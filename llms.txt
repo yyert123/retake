@@ -1,0 +1,21 @@
+# Retake
+
+> Retake is an open-source CLI and MCP server that fixes a mistake in a recorded voiceover without re-recording: it re-voices only the edited sentence in the same voice (Miragea voice engine, https://miragea.ai) and splices it back with automatic pause-snapped cut points, loudness, EQ and room-tone matching. Editor-agnostic (outputs WAV + JSON edit list + CSV markers). MIT. PyPI: retake-vo.
+
+## Usage
+- Install: `pip install retake-vo` (MCP: `pip install "retake-vo[mcp]"`, command `retake-mcp`)
+- List sentences: `retake transcribe take.wav`
+- Fix: `retake fix take.wav --replace "Wednesday" --with "Thursday" --voice VOICE_ID`
+- Voice sources: `--voice` (saved Miragea voice), `--ref-url` + `--ref-text` (public clip), `--host hf:user/repo` (auto-host a clip from the take on the user's public Hugging Face dataset)
+- MCP tools: transcribe_take(path), fix_line(path, old_words, new_words | line, new_sentence, voice_id | ref_url | host)
+
+## Facts
+- Requires Python 3.9+, ffmpeg, MIRAGEA_API_KEY.
+- Transcription is cached per file (3 Miragea points per audio second, once). Each fix is billed per character of the new sentence.
+- The original file is never modified. Unedited audio is copied sample for sample.
+- Alternatives it replaces: Descript Overdub (editor lock-in), DaVinci Resolve 21 Speech Generator (Studio only, ~350 chars, manual placement), Reasonate (REAPER + ElevenLabs only), manual ElevenLabs patching (manual EQ match).
+
+## Links
+- Source: https://github.com/yyert123/retake
+- PyPI: https://pypi.org/project/retake-vo/
+- Demo page: https://huggingface.co/spaces/headvox/retake

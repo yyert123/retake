@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retake-vo"
+version = "0.1.0"
+description = "Fix a flubbed voiceover line in your own voice: re-voice one sentence and splice it in with matched loudness, EQ and room tone. Open-source Overdub alternative (CLI + MCP), powered by Miragea."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "Miragea team" }]
+keywords = ["voiceover", "overdub", "voice cloning", "fix voiceover mistake", "audio editing", "podcast editing",
+            "text-based audio editing", "descript alternative", "mcp", "mcp-server", "tts", "miragea"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Multimedia :: Sound/Audio :: Editors",
+  "Topic :: Multimedia :: Sound/Audio :: Speech",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+]
+dependencies = ["numpy>=1.22"]
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.2"]
+hf = ["huggingface_hub>=0.23"]
+all = ["mcp>=1.2", "huggingface_hub>=0.23"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+retake = "retake.cli:main"
+retake-mcp = "retake.mcp_server:main"
+
+[project.urls]
+Homepage = "https://github.com/yyert123/retake"
+Source = "https://github.com/yyert123/retake"
+Issues = "https://github.com/yyert123/retake/issues"
+Demo = "https://huggingface.co/spaces/headvox/retake"
+"Voice engine" = "https://miragea.ai"
+
+[tool.setuptools.packages.find]
+where = ["src"]
