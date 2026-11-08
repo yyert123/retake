@@ -1,0 +1,31 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.yyert123/retake",
+  "title": "Retake",
+  "description": "Fix a voiceover mistake without re-recording: re-voice one sentence in your voice and splice it in.",
+  "repository": {
+    "url": "https://github.com/yyert123/retake",
+    "source": "github"
+  },
+  "websiteUrl": "https://huggingface.co/spaces/headvox/retake",
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "retake-vo",
+      "version": "0.1.1",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "MIRAGEA_API_KEY",
+          "description": "Miragea API key (https://miragea.ai), used for transcription and voice",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

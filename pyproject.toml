@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "retake-vo"
-version = "0.1.0"
+version = "0.1.1"
 description = "Fix a flubbed voiceover line in your own voice: re-voice one sentence and splice it in with matched loudness, EQ and room tone. Open-source Overdub alternative (CLI + MCP), powered by Miragea."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -19,10 +19,10 @@ classifiers = [
   "Environment :: Console",
   "Intended Audience :: End Users/Desktop",
 ]
-dependencies = ["numpy>=1.22"]
+dependencies = ["numpy>=1.22", "mcp>=1.2"]
 
 [project.optional-dependencies]
-mcp = ["mcp>=1.2"]
+mcp = []
 hf = ["huggingface_hub>=0.23"]
 all = ["mcp>=1.2", "huggingface_hub>=0.23"]
 dev = ["pytest>=7"]
@@ -30,6 +30,7 @@ dev = ["pytest>=7"]
 [project.scripts]
 retake = "retake.cli:main"
 retake-mcp = "retake.mcp_server:main"
+retake-vo = "retake.mcp_server:main"
 
 [project.urls]
 Homepage = "https://github.com/yyert123/retake"

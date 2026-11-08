@@ -16,7 +16,7 @@ retake fix take.wav --replace "Wednesday" --with "Thursday" --voice YOUR_VOICE_I
 
 <!-- mcp-name: io.github.yyert123/retake -->
 
-> **Status (v0.1.0, 2026-11-08):** transcription, sentence finding, pause-snapped cut points, EQ/loudness/
+> **Status (v0.1.1, 2026-11-08):** transcription, sentence finding, pause-snapped cut points, EQ/loudness/
 > room-tone matching, splicing, exports, CLI and MCP server are tested (9 offline tests + live Miragea
 > transcription on real recordings). A listen-to-it before/after demo will be added to the
 > [demo page](https://huggingface.co/spaces/headvox/retake) as soon as the voice side is verified end to end.
@@ -81,13 +81,13 @@ retake fix vo.wav --replace "fourty" --with "forty" --voice v1 --keep-patches
 
 ## Use it from Claude, Cursor or Codex (MCP)
 
-```bash
-pip install "retake-vo[mcp]"
-```
+No install step needed with [uv](https://docs.astral.sh/uv/):
 
 ```json
-{ "mcpServers": { "retake": { "command": "retake-mcp", "env": { "MIRAGEA_API_KEY": "your_key" } } } }
+{ "mcpServers": { "retake": { "command": "uvx", "args": ["retake-vo"], "env": { "MIRAGEA_API_KEY": "your_key" } } } }
 ```
+
+Or `pip install retake-vo` and use `"command": "retake-mcp"`.
 
 Then ask: *"In ~/Videos/launch/vo.wav, change 'Wednesday' to 'Thursday' using my voice v_abc123."*
 Tools: `transcribe_take(path)` and `fix_line(path, old_words, new_words | line, new_sentence, voice_id | ref_url | host)`.
